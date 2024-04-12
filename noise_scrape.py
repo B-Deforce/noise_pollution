@@ -14,7 +14,7 @@ import os
 import numpy as np
 
 # read trigger scenario-file
-data_PATH = "C:/Users/u0143591/OneDrive - KU Leuven/PhD/side_projects/noise_pol_leuven"
+data_PATH = ""
 nudge_df = pd.read_excel(data_PATH + "/trigger_scenario_activities_2022_12_01.xlsx",
                          sheet_name="run",
                          parse_dates=[['EventDate', 'EventTime']])
@@ -36,8 +36,8 @@ WebDriverWait(driver, timeout=5).until(lambda d: d.find_element(By.ID, "username
 search1 = driver.find_element(By.ID, "username_field")
 search2 = driver.find_element(By.ID, "password_field")
 
-search1.send_keys("")
-search2.send_keys("")
+search1.send_keys(os.environ["MUN_ID"])
+search2.send_keys("MUN_P")
 search2.send_keys(Keys.RETURN)
 
 WebDriverWait(driver, timeout=10).until(lambda d: d.find_element(By.CLASS_NAME, "ssts_starttime"))
